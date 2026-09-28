@@ -9,6 +9,10 @@ const diarySchema = new mongoose.Schema({
     description: {
         required: true,
         type: String
+    },
+    date: {
+        required: true,
+        type: String
     }
 })
 
