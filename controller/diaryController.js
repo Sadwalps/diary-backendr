@@ -2,7 +2,7 @@
 const diarydata = require('../model/diaryModel')
 
 //controller for add diary data
-export const addDiaryController = async (req, res) => {
+exports.addDiaryController = async (req, res) => {
     console.log(`Inside add diary controller`)
 
     const { title, description, date } = req.body
@@ -19,6 +19,18 @@ export const addDiaryController = async (req, res) => {
             await newDiary.save()
             res.status(200).json(newDiary)
         }
+    } catch (error) {
+        res.status(401).json(error)
+    }
+}
+
+//controller for get diary datas
+exports.getDiaryController = async (req, res) => {
+    console.log(`Inside get diary controller`);
+
+    try {
+        const getdiarydata = await diarydata.find()
+        res.status(200).json(getdiarydata)
     } catch (error) {
         res.status(401).json(error)
     }
