@@ -35,3 +35,17 @@ exports.getDiaryController = async (req, res) => {
         res.status(401).json(error)
     }
 }
+
+//controller for delete diary data
+exports.deleteDiaryController = async (req, res) => {
+    console.log(`Inside delete diary controller`);
+    const { id } = req.params
+    console.log(id);
+
+    try {
+        await diarydata.findByIdAndDelete({ _id:id })
+        res.status(200).json(`Deleted successfully`)
+    } catch (error) {
+        res.status(401).json(error)
+    }
+}
