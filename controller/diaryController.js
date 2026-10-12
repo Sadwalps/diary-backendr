@@ -43,8 +43,29 @@ exports.deleteDiaryController = async (req, res) => {
     console.log(id);
 
     try {
-        await diarydata.findByIdAndDelete({ _id:id })
+        await diarydata.findByIdAndDelete({ _id: id })
         res.status(200).json(`Deleted successfully`)
+    } catch (error) {
+        res.status(401).json(error)
+    }
+}
+
+//controller for edit diary data
+exports.editDiaryController = async (req, res) => {
+    console.log(`Inside edit diary controller`);
+    const { title, description, date } = req.body
+    console.log(title, description, date);
+    const { id } = req.params
+    console.log(id);
+
+    try {
+        const existingDiary = await diarydata.findByIdAndUpdate({ _id: id }, {
+            title,
+            description,
+            date
+        }, { new: true })
+        await existingDiary.save()
+        res.status(200).json(existingDiary)
     } catch (error) {
         res.status(401).json(error)
     }

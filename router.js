@@ -1,6 +1,6 @@
 //import express
 const express = require('express')
-const { addDiaryController, getDiaryController, deleteDiaryController } = require('./controller/diaryController')
+const { addDiaryController, getDiaryController, deleteDiaryController, editDiaryController } = require('./controller/diaryController')
 
 const router = new express.Router()
 
@@ -12,5 +12,8 @@ router.get('/get-diary-data', getDiaryController)
 
 //router for delete diary data
 router.delete('/delete-diary-data/:id', deleteDiaryController)
+
+//router for edit diary data
+router.put('/edit-diary-data/:id', editDiaryController)
 
 module.exports = router
